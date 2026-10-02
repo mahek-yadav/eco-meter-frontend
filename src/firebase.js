@@ -43,6 +43,7 @@ if (isConfigured) {
 
 export {
   app,
+  firebaseConfig,
   auth,
   googleProvider,
   isConfigured

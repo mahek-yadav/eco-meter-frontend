@@ -4,7 +4,7 @@ import {
   onMessage
 } from "firebase/messaging";
 
-import { app } from "./firebase";
+import { app, firebaseConfig } from "./firebase";
 
 export async function requestNotificationPermission() {
   if (!("Notification" in window)) {
@@ -24,9 +24,17 @@ export async function requestNotificationPermission() {
 
   const messaging = getMessaging(app);
 
+  const serviceWorkerRegistration =
+    await navigator.serviceWorker.register(
+      `/firebase-messaging-sw.js?${new URLSearchParams(
+        firebaseConfig
+      )}`
+    );
+
   const token = await getToken(messaging, {
     vapidKey:
-      import.meta.env.VITE_FIREBASE_VAPID_KEY
+      import.meta.env.VITE_FIREBASE_VAPID_KEY,
+    serviceWorkerRegistration
   });
 
   if (!token) {

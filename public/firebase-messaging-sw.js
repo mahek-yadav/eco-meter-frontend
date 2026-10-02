@@ -6,13 +6,17 @@ importScripts(
   "https://www.gstatic.com/firebasejs/11.1.0/firebase-messaging-compat.js"
 );
 
+// Config is passed in as query params at registration time (see
+// src/messaging.js) so no values are hardcoded in this file.
+const params = new URL(self.location).searchParams;
+
 firebase.initializeApp({
-  apiKey: "AIzaSyAZYJBSB5QsUKSpJfOAsbAWVrwKhFBrliM",
-  authDomain: "eco-meter-957ab.firebaseapp.com",
-  projectId: "eco-meter-957ab",
-  storageBucket: "eco-meter-957ab.firebasestorage.app",
-  messagingSenderId: "117885500072",
-  appId: "1:117885500072:web:84af3be8b3358f5728609d"
+  apiKey: params.get("apiKey"),
+  authDomain: params.get("authDomain"),
+  projectId: params.get("projectId"),
+  storageBucket: params.get("storageBucket"),
+  messagingSenderId: params.get("messagingSenderId"),
+  appId: params.get("appId")
 });
 
 const messaging = firebase.messaging();
