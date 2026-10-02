@@ -70,9 +70,3 @@ Email/password login uses the backend JWT endpoints. Google Sign-In uses Firebas
 - Energy-saving tips
 - Usage threshold alerts
 - Firebase notification form
-
-## Important
-
-The notification page needs a real FCM registration token. A JWT login token is not an FCM token.
-
-Do not commit `.env` files or Firebase service-account JSON files.
